@@ -1,0 +1,29 @@
+----->
+
+$body = @{
+    "username" = "Sajan2" 
+    "password" = "efrn"                                                                                                                         >>     "password" = "efrn"
+} | ConvertTo-Json
+
+----- > This is how we create body
+
+----->
+
+$headers = @{
+    "Content-Type" = "application/json"
+    "Authorization" = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNhamFuMiIsImV4cCI6MTY4MTcyNTI2OX0.SsLS1rKl01dCjeaAInmyXLpNm-J7gLaGtbbbh8ZCN0U"
+}
+
+----> This is how we create headers
+
+------->
+
+Invoke-WebRequest -Uri "http://127.0.0.1:5000/login" -Method Post -Headers $headers -Body $body
+
+----> login command(since login doesn't require token, no need to create the header with 'Authorization)
+
+------>
+
+Invoke-WebRequest -Uri http://localhost:5000/protected -Headers $headers
+
+-----> This is how we access a protected content(token_required content)
